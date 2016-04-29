@@ -15,6 +15,8 @@ public class ClaseJava {
 	private Long cantidadLineasComentadas;
 	private Long cantidadLineasEnBlanco;
 	
+	
+
 	public ClaseJava(File archivoJava){
 		init();
 		this.setClaseJava(archivoJava);
@@ -62,21 +64,12 @@ public class ClaseJava {
 	}
 
 
-
-	public void setCantidadDeLineas(Long cantidadDeLineas) {
-		this.cantidadDeLineas = cantidadDeLineas;
-	}
-
-
-
 	public Long getCantidadLineasComentadas() {
 		return cantidadLineasComentadas;
 	}
 
-
-
-	public void setCantidadLineasComentadas(Long cantidadLineasComentadas) {
-		this.cantidadLineasComentadas = cantidadLineasComentadas;
+	public Long getCantidadLineasEnBlanco() {
+		return cantidadLineasEnBlanco;
 	}
 	
 	public Long getCantidadLineasDeCodigo(){
@@ -93,9 +86,15 @@ public class ClaseJava {
 //			Mientras la linea no sea null, significa que hay una linea para leer
 			while(linea != null){
 				linea= linea.trim();
-				if(linea.startsWith("//")){
+				if(linea.startsWith("//") && !comentarioMultilinea ){
 					cantidadLineasComentadas++;
 				}
+				//Si empieza con el comentario mutilinea tengo que colocarlo en true
+				if(linea.startsWith("/*")){
+					this.cantidadLineasComentadas ++;
+					comentarioMultilinea = true;
+				}
+				
 				if(linea.isEmpty()){
 					cantidadLineasEnBlanco++;
 				}
