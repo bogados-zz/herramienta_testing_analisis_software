@@ -25,6 +25,7 @@ public class ClaseJava {
 	private void init() {
 		this.cantidadDeLineas=0L;
 		this.cantidadLineasComentadas=0L;
+		this.cantidadLineasEnBlanco=0L;
 	}
 	
 	public ClaseJava(){
@@ -99,7 +100,7 @@ public class ClaseJava {
 					cantidadLineasEnBlanco++;
 				}
 				this.cantidadDeLineas++;
-				br.readLine();
+				linea = br.readLine();
 			}
 		} catch (IOException e) {
 			//TODO: pordria agregar una exception propia para ver lo que falla. Es algo a mejorar.
