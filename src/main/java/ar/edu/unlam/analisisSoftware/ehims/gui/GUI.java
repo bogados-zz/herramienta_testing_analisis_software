@@ -19,6 +19,7 @@ import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 
 import ar.edu.unlam.analisisSoftware.ehims.utils.ClaseJava;
+import ar.edu.unlam.analisisSoftware.ehims.utils.Project;
 
 public class GUI extends JFrame {
 
@@ -76,13 +77,14 @@ public class GUI extends JFrame {
 				int returnVal = fc.showOpenDialog(frame);
 		        if (returnVal == JFileChooser.APPROVE_OPTION) {
 		            File file = fc.getSelectedFile();
-		            ClaseJava claseJava = new ClaseJava(file);
+		            Project project = Project.getInstance(file);
+//		            ClaseJava claseJava = new ClaseJava(file);
 		            lblFile.setText(file.getAbsolutePath());
-		            lblLines.setText(String.valueOf(claseJava.getCantidadLineasDeCodigo()));
-		        	lblBlanks.setText(String.valueOf(claseJava.getCantidadLineasEnBlanco()));
-		        	lblComment.setText(String.valueOf(claseJava.getCantidadLineasComentadas()));
+		            lblLines.setText(project.getCantidadLineasDeCodigo().toString());
+		        	lblBlanks.setText(String.valueOf(project.getCantidadLineasEnBlanco()));
+		        	lblComment.setText(String.valueOf(project.getCantidadLineasComentadas()));
 		        	//lblMulticomment;
-		        	lblTotalLines.setText(String.valueOf(claseJava.getCantidadDeLineas()));
+		        	lblTotalLines.setText(String.valueOf(project.getCantidadDeLineas()));
 		            //This is where a real application would open the file.
 		            //log.append("Opening: " + file.getName() + "." + newline);
 		        } else {

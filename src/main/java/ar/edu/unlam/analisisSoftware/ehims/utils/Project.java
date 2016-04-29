@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Project {
 	private File carpetaPrincipal;
 	private static Project instance;
-	ArrayList<ClaseJava> clasesJava;
+	ArrayList<ClaseJava> clasesJava= new ArrayList<ClaseJava>();
 	private Project(){
 	}
 	
@@ -40,6 +40,39 @@ public class Project {
 
 	public void setCarpetaPrincipal(File carpetaPrincipal) {
 		this.carpetaPrincipal = carpetaPrincipal;
+		recorrerCarpetas(carpetaPrincipal);
+	}
+
+	public Long getCantidadLineasDeCodigo() {
+		Long cantidadLineasDeCodigo=0L;
+		for (ClaseJava claseJava : clasesJava) {
+			cantidadLineasDeCodigo+= claseJava.getCantidadLineasDeCodigo();
+		}
+		return cantidadLineasDeCodigo;
+	}
+
+	public Long getCantidadLineasEnBlanco() {
+		Long cantidadLineasEnBlanco = 0L;
+		for (ClaseJava claseJava : clasesJava) {
+			cantidadLineasEnBlanco+=claseJava.getCantidadLineasEnBlanco();
+		}
+		return cantidadLineasEnBlanco;
+	}
+
+	public Long getCantidadDeLineas() {
+		Long cantidadLineas = 0L;
+		for (ClaseJava claseJava : clasesJava) {
+			cantidadLineas+= claseJava.getCantidadDeLineas();
+		}
+		return cantidadLineas;
+	}
+
+	public Long getCantidadLineasComentadas() {
+		Long cantidadDeLineasComentadas = 0L;
+		for (ClaseJava claseJava : clasesJava) {
+			cantidadDeLineasComentadas+= claseJava.getCantidadLineasComentadas();
+		}
+		return cantidadDeLineasComentadas;
 	}
 	
 }
